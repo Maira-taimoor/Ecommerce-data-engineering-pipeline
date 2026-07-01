@@ -1,3 +1,4 @@
+-- View: Customer revenue 
 CREATE OR REPLACE VIEW vw_customer_revenue AS
 SELECT
     c.customer_unique_id,
@@ -10,6 +11,7 @@ JOIN olist_orders_dataset o ON c.customer_id = o.customer_id
 JOIN olist_order_payments_dataset p ON o.order_id = p.order_id
 GROUP BY c.customer_unique_id, c.customer_city, c.customer_state;
 
+-- View: Monthly Sales
 CREATE OR REPLACE VIEW vw_monthly_sales AS
 SELECT
     DATE_TRUNC('month', o.order_purchase_timestamp) AS month,
@@ -20,6 +22,7 @@ JOIN olist_order_payments_dataset p
 ON o.order_id = p.order_id
 GROUP BY month;
 
+-- View: Product Performance
 CREATE OR REPLACE VIEW vw_product_performance AS
 SELECT
     product_id,
